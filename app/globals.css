@@ -1,1 +1,101 @@
 @import "tailwindcss";
+::-webkit-scrollbar {
+    width: 8px; 
+  }
+  
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #e40462, #ea7286);
+    border-radius: 20px;
+  }
+  
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Light background */
+    border-radius: 10px;
+  }
+
+  /* All styles */
+  .product-container {
+    @apply w-full grid px-5 py-3 md:px-3 md:py-2 grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-2
+  }
+
+  .product-card{
+    @apply border-2  border-gray-400 shadow-2xl flex flex-col justify-center items-center space-y-2 p-2 hover:shadow-md duration-300 transition-discrete  
+  }
+
+  .card-img{
+    @apply w-full h-40 object-contain mb-2 md:mb-4
+  }
+
+  .card-title-div {
+    @apply border-b-2 border-zinc-600
+  }
+
+  .card-text {
+    @apply text-start text-zinc-700 text-[12px] md:text-[16px] pb-2
+  }
+
+  .price-rate-container {
+    @apply flex justify-between items-center gap-18 md:gap-20
+  }
+
+  .rating{
+    @apply flex items-center
+  }
+
+  .see-more-link{
+    @apply w-full md:w-[120px] lg:w-full flex justify-center items-center  bg-blue-400 hover:bg-sky-300 duration-300 transition-all 
+  }
+
+  .see-more-btn{
+    @apply text-white hover:cursor-pointer hover:text-zinc-700
+  }
+
+  .product-details-container{
+    @apply w-full bg-gradient-to-r from-[#212529] via-[#00f5d4] to-[#131211] flex flex-col md:flex-row justify-center items-center h-auto py-6 px-4 
+  }
+
+  .product-details-card {
+    @apply  w-full md:w-1/2 p-3 flex flex-col justify-start items-start space-y-8 
+  }
+
+  .d-title-div {
+    @apply p-1  border-b-2 border-sky-200
+  }
+
+  .d-title-text {
+    @apply text-3xl text-zinc-300
+  }
+
+  .d-img {
+    @apply w-[300px] h-[300px] shadow-lg
+  }
+
+  .desc-container {
+    @apply w-full md:w-1/2 space-y-8  p-2 flex flex-col justify-start items-start 
+  }
+
+  .back-btn {
+    @apply py-1 px-2 bg-white rounded-sm hover:bg-gray-300
+  }
+
+  .desc-wrapper {
+    @apply pl-3 border-l-2 border-sky-400
+  }
+
+  .desc-text {
+    @apply text-[24] text-white font-semibold leading-tight
+  }
+
+  .other-details {
+    @apply p-2 shadow-2xl hover:shadow-md 
+  }
+
+  .other-details-text {
+    @apply text-center text-white
+  }
+
+  .add-card {
+    @apply bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700
+  }

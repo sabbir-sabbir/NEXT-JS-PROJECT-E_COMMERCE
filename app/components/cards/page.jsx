@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AllContext } from "@/app/context/ContextAPI";
 import NoCards from "./nocards";
-import { useLocalStorage } from "usehooks-ts";
+
 
 export default function CartPage() {
   const { cart, removeFromCart, addToCart, updateQuantity } = useContext(AllContext);
@@ -19,7 +19,7 @@ export default function CartPage() {
           ) : (
             cart.map((item) => (
               <div
-                key={item.id}  // Ensure stable keys for mapping over items
+                key={item.id}  
                 className="w-full flex justify-start items-center px-3 py-2 gap-5 border-b-2 border-amber-300"
               >
                 <div>

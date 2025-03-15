@@ -3,7 +3,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-// Create Context
 export const AllContext = createContext();
 
 export const ContextProvider = ({ children }) => {
@@ -13,13 +12,23 @@ export const ContextProvider = ({ children }) => {
   const [inputValue, setInputValue] = useState("");
   const [cart, setCart] = useState([]);
 
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("carts")) || [];
+    setCart(storedCart);
+  }, []);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem("carts", JSON.stringify(cart));
+    }
+  }, [cart]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("https://dummyjson.com/products?limit=10");
-        setProducts(response.data.products);
+        const response = await axios.get("https://dummyjson.com/products?limit=500");
+        setProducts(response.data.products.reverse());
         setCategory(response.data.products);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -31,14 +40,11 @@ export const ContextProvider = ({ children }) => {
     fetchProducts();
   }, []);
 
-  // Search for product
-  const getData = (e)=> {
-    setInputValue(e.target.value.trim())
-  
+  const getData = (e) => {
+    setInputValue(e.target.value.trim());
   };
 
-   // Add item to cart
-   const addToCart = (product) => {
+  const addToCart = (product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
       if (existingItem) {
@@ -64,7 +70,7 @@ export const ContextProvider = ({ children }) => {
   };
 
   return (
-    <AllContext.Provider value={{ products, loading, category, getData, inputValue, cart, addToCart, removeFromCart,  updateQuantity }}>
+    <AllContext.Provider value={{ products, loading, category, getData, inputValue, cart, addToCart, removeFromCart, updateQuantity }}>
       {children}
     </AllContext.Provider>
   );

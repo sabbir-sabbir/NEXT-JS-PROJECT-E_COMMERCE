@@ -5,6 +5,7 @@ import { useEffect, useContext, useState } from "react";
 import { AllContext } from "@/app/context/ContextAPI";
 import axios from "axios";
 import Loading from "../Loading";
+import { AiOutlineRollback } from "react-icons/ai";
 
 export default function ProductDetails() {
  const {addToCart} = useContext(AllContext);
@@ -47,7 +48,7 @@ export default function ProductDetails() {
 
         <div className="desc-container">
         <div className="back-btn">
-          <button onClick={()=> window.history.back()}>Back</button>
+          <button className="flex items-center gap-2 " onClick={()=> window.history.back()}> <span><AiOutlineRollback/></span> Back</button>
         </div>
           <div className="desc-wrapper"><h2 className="desc-text ">{product.description}</h2></div>
           <div className="other-details"><p className="other-details-text">Brand: {product.brand}</p></div>

@@ -7,7 +7,6 @@ export const AllContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [inputValue, setInputValue] = useState("");
   const [cart, setCart] = useState([]);
@@ -27,10 +26,9 @@ export const ContextProvider = ({ children }) => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("https://dummyjson.com/products?limit=500");
+        const response = await axios.get("https://dummyjson.com/products?limit=100");
         setProducts(response.data.products.reverse());
-        setCategory(response.data.products);
-      } catch (error) {
+        } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
         setLoading(false);
@@ -70,7 +68,7 @@ export const ContextProvider = ({ children }) => {
   };
 
   return (
-    <AllContext.Provider value={{ products, loading, category, getData, inputValue, cart, addToCart, removeFromCart, updateQuantity }}>
+    <AllContext.Provider value={{ products, loading, getData, inputValue, cart, addToCart, removeFromCart, updateQuantity }}>
       {children}
     </AllContext.Provider>
   );

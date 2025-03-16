@@ -1,11 +1,20 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AllContext } from "@/app/context/ContextAPI";
 import Link from "next/link";
 import Loading from "./Loading";
+import Pagination from "../components/pagination/pagination";
 
 export default function ProductPage() {
   const { products, loading, inputValue } = useContext(AllContext);
+
+  const [showPerPage, setShowPerPage] = useState(10);
+  const [pagination, setPagination ] = useState({
+    start: 0,
+    end: showPerPage,
+  });
+
+
 
   let FilterProduct = products.filter((curValue) => {
     return curValue.title.toLowerCase().includes(inputValue);
@@ -16,7 +25,7 @@ export default function ProductPage() {
         <Loading />
       ) : (
         <div className="product-container">
-          {FilterProduct.map((item) => (
+          {FilterProduct.slice(pagination.start, pagination.end).map((item) => (
             <div className="product-card" key={item.id}>
               {/* Product Image */}
               <div>
@@ -53,6 +62,7 @@ export default function ProductPage() {
           ))}
         </div>
       )}
+      <div className=" bg-black text-white container mx-auto py-2"><Pagination showPerPage={showPerPage} /></div>
     </>
   );
 }

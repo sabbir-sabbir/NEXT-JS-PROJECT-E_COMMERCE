@@ -9,18 +9,27 @@ export default function ProductPage() {
   const { products, loading, inputValue } = useContext(AllContext);
 
   const [showPerPage, setShowPerPage] = useState(10);
-  const [pagination, setPagination ] = useState({
+  const [pagination, setPagination] = useState({
     start: 0,
     end: showPerPage,
   });
 
-
+  const paginationChange = (start, end) => {
+    setPagination({ start: start, end: end });
+  };
 
   let FilterProduct = products.filter((curValue) => {
     return curValue.title.toLowerCase().includes(inputValue);
   });
   return (
     <>
+    <div className="w-full bg-sky-300/25 backdrop-blur-3xl  my-3 py-4 px-12">
+        <Pagination
+          showPerPage={showPerPage}
+          paginationChange={paginationChange}
+          total={FilterProduct.length}
+        />
+      </div>
       {loading ? (
         <Loading />
       ) : (
@@ -62,7 +71,7 @@ export default function ProductPage() {
           ))}
         </div>
       )}
-      <div className=" bg-black text-white container mx-auto py-2"><Pagination showPerPage={showPerPage} /></div>
+      
     </>
   );
 }

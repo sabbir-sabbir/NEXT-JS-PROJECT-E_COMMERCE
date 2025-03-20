@@ -1,4 +1,7 @@
 @import "tailwindcss";
+
+
+@custom-variant dark (&:is(.dark *));
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -52,20 +55,13 @@
   @apply flex flex-col items-center justify-center gap-4 p-4 bg-gray-300/45 rounded-md
 }
 
-
-
-
-
-
-
-
 /*  Product/ page.jsx styles */
 .product-container {
   @apply w-full  grid px-5 py-3 md:px-3 md:py-2 grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4;
 }
 
 .product-card {
-  @apply bg-gradient-to-bl from-[#4ad66d]/45 via-[#] to-[#] backdrop-blur-3xl shadow-2xl flex flex-col justify-center items-center space-y-3  p-2 hover:shadow-sm duration-300 transition-discrete;
+  @apply bg-gradient-to-bl from-[#4ad66d]/45 via-[#] to-[#] backdrop-blur-3xl shadow-2xl flex flex-col justify-center items-center space-y-2  p-2 hover:shadow-sm duration-300 transition-discrete;
 }
 
 .card-img {
@@ -144,3 +140,5 @@
 .add-card {
   @apply bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700;
 }
+
+
